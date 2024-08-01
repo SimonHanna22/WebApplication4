@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Blogy>
+@{
+    Layout = "_DashBoard";
+}
+
+<div class="untree_co-section before-footer-section">
+    <div class="title">
+        <i class="uil uil-tachometer-fast-alt"></i>
+        <span class="text">View Blogs</span>
+    </div>
+    <div class="container">
+        <div class="row mb-5">
+
+            <form class="col-md-12" method="post">
+                <div class="site-blocks-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="product-Image">Image</th>
+                                <th class="product-Id">Id</th>
+                                <th class="product-name">Title</th>
+                                <th class="product-price">Author</th>
+                              
+                                <th class="product-Description">Description</th>
+                                <th class="product-remove">Date & Time</th>
+                                <th class="product-remove">Opration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><img src="~/images/@item.ImagesPath" width="70" class="img-thumbnail" /></td>
+                                    <td>@item.BlogId</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Author</td>
+                                    
+                                    <td>@item.Description</td>
+                                    <td>@item.BlogDate</td>
+                                    <td>
+
+
+                                        <a class="btn btn-success" asp-action="EditBlog" asp-route-id="@item.BlogId" role="button">
+                                            <span class="material-symbols-outlined">
+                                                Edit
+                                            </span>
+                                        </a>
+                                        <a class="btn btn-danger " asp-action="DeleteBlog" asp-route-id="@item.BlogId" role="button">
+                                            <span class="material-symbols-outlined">
+                                                Delete
+                                            </span>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+
+
+

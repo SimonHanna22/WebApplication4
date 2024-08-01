@@ -1,0 +1,112 @@
+﻿@using WebApplication4.ViewModel
+@model ShopViewModel
+<body>
+
+
+	<!-- Start Hero Section -->
+	<div class="hero">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-lg-5">
+					<div class="intro-excerpt">
+						<h1>Shop</h1>
+					</div>
+				</div>
+				<div class="col-lg-7">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Hero Section -->
+
+
+
+	<div class="untree_co-section product-section before-footer-section">
+		<div class="container">
+			<div class="row">
+
+				<!-- Start Column 1 -->
+			  @foreach(var product in Model.prod)
+			   {
+
+				<div class="col-12 col-md-4 col-lg-3 mb-5">
+						<a class="product-item">
+						<img src="~/images/@product.ImagePath" class="img-fluid product-thumbnail">
+						<h3 class="product-title">@product.Name</h3>
+						<strong class="product-price">$@product.Price</strong>
+
+							<a class="btn btn-black btn-lg py-3 btn-block" asp-action="AddToCart" asp-controller="Shopy" asp-route-pid="@product.Id">
+								
+						<img src="~/images/cross.svg" class="img-fluid" >
+
+                                </a>
+                            
+					</a>
+				</div>
+			   }
+				<!-- End Column 1 -->
+		
+				<div class="row mt-5">
+					<div class="col text-center">
+						<div class="block-27">
+							<ul class="pagination">
+								@if (Model.CurrentPage != 1)
+								{
+									<li class="page-item">
+										<a style="color:black" class="page-link" asp-controller="Shopy" asp-action="Shop" asp-route-Page="@(Model.CurrentPage-1)">&lt;</a>
+									</li>
+								}
+								else
+								{
+									<li class="page-item disabled">
+										<a style="color:black" class="page-link" asp-controller="Shopy" asp-action="Shop" asp-route-Page="@(Model.CurrentPage)">&lt;</a>
+									</li>
+								}
+
+								@for (int i = 1; i <= Model.TotalNumberOfPages; i++)
+								{
+									if (i == Model.CurrentPage)
+									{
+										<li class="page-item active">
+											<span style="color:black;Background-color:#3b5d50" class="page-link">@i</span>
+										</li>
+									}
+									else
+									{
+										<li class="page-item">
+											<a style="color:black0" class="page-link" asp-controller="Shopy" asp-action="Shop" asp-route-Page="@i">@i</a>
+										</li>
+									}
+								}
+
+								@if (Model.CurrentPage != Model.TotalNumberOfPages)
+								{
+									<li class="page-item">
+										<a style="color:black" class="page-link" asp-controller="Shopy" asp-action="Shop" asp-route-Page="@(Model.CurrentPage+1)">&gt;</a>
+									</li>
+								}
+								else
+								{
+									<li class="page-item disabled">
+										<a style="color:black" class="page-link" asp-controller="Shopy" asp-action="Shop" asp-route-Page="@(Model.CurrentPage)">&gt;</a>
+									</li>
+								}
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	
+
+
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/tiny-slider.js"></script>
+	<script src="js/custom.js"></script>
+</body>
+
+
